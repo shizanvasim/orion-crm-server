@@ -24,7 +24,6 @@ const getClientById = (req, res) => {
 // Add Client
 const addClient = async (req, res) => {
   const {
-    profile_picture,
     first_name,
     last_name,
     shop_name,
@@ -102,6 +101,7 @@ const updateClient = async (req, res) => {
     address,
     zip_code,
     area,
+    paid
   } = req.body;
 
   try {

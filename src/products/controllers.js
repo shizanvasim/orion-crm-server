@@ -32,7 +32,7 @@ const addProduct = async (req, res) => {
         if (checkIfExists.rows.length > 0) {
             res.send('Product Aleady Exist With This Name')
         } else {
-            await pool.query(queries.addProduct, [product_name, description, price, category, stock_quantity])
+            await pool.query(queries.addProduct, [product_name, description, price, category, stock_quantity, new Date()])
             res.send('Product Added Successfully')
         }
     } catch (error) {
