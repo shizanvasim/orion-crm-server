@@ -16,7 +16,10 @@ const checkIfUsernameExists = 'SELECT * FROM users WHERE username = $1';
 const deleteUser = 'DELETE FROM users WHERE user_id = $1';
 
 // Update a user's information by their ID
-const updateUser = 'UPDATE users SET username = $1, email = $2, password = $3, role = $4 WHERE user_id = $5';
+const updateUser = 'UPDATE users SET username = $1, email = $2, role = $3, password = $4 WHERE id = $5';
+
+const updateUserWithoutPassword = `UPDATE users SET username = $1, email = $2, role = $3 WHERE user_id = $4`;
+
 
 module.exports = {
     getAllUsers,
@@ -24,5 +27,6 @@ module.exports = {
     addUser,
     deleteUser,
     updateUser,
-    checkIfUsernameExists
+    checkIfUsernameExists,
+    updateUserWithoutPassword
 };

@@ -47,34 +47,62 @@ const addUser = async (req, res) => {
     }
 };
 
+
 // Edit User
 const editUser = async (req, res) => {
     try {
-        const id = req.params.id;
-        const { username, email, password, role } = req.body;
+        const { id } = req.params; // Assuming you pass the user's ID as a parameter
+        const { username, email, role, password } = req.body;
 
-        const salt = bcrypt.genSaltSync(saltRounds);
-        const hash = bcrypt.hashSync(password, salt);
-
-        const checkIfExists = await pool.query(userQueries.checkIfUsernameExists, [username]);
-
-        if (checkIfExists.rows.length > 0 && checkIfExists.rows[0].user_id === parseInt(id)) {
-            await pool.query(userQueries.updateUser, [username, email, hash, role, id]);
-            res.send('User Edited Successfully');
-        } else {
-            const checkIfExistsForOthers = await pool.query(userQueries.checkIfUsernameExists, [username]);
-            if (checkIfExistsForOthers.rows.length > 0) {
-                res.send('Username Already Exists');
-            } else {
-                await pool.query(userQueries.updateUser, [username, email, password, role, id]);
-                res.send('User Edited Successfully');
-            }
+        // Check if the user with the given ID exists
+        const checkIfExists = await pool.query(userQueries.checkIfUserExistsById, [id]);
+        if (checkIfExists.rows.length === 0) {
+            res.status(404).send('User Not Found');
+            return;
         }
+
+        // Generate a new hash for the password if a new one is provided
+        let hash = checkIfExists.rows[0].password; // By default, use the existing hash
+        if (password) {
+            const salt = bcrypt.genSaltSync(saltRounds);
+            hash = bcrypt.hashSync(password, salt);
+        }
+
+        // Update the user's information in the database
+        await pool.query(userQueries.updateUser, [username, email, role, hash, id]);
+        res.send('User Updated Successfully');
     } catch (error) {
         console.error(error);
-        res.status(500).send('An error occurred while editing User');
+        res.status(500).send('An error occurred while updating User');
     }
 };
+
+
+// Edit User
+// const editUser = async (req, res) => {
+//     try {
+//         const id = req.params.id;
+//         const { username, email, password, role } = req.body;
+
+//         // Check if a new password is provided
+//         if (password) {
+//             const salt = bcrypt.genSaltSync(saltRounds);
+//             const hash = bcrypt.hashSync(password, salt);
+
+//             // Update user with the hashed password
+//             await pool.query(userQueries.updateUser, [username, email, hash, role, id]);
+//         } else {
+//             // Update user without changing the password
+//             await pool.query(userQueries.updateUserWithoutPassword, [username, email, role, id]);
+//         }
+
+//         res.send('User Edited Successfully');
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).send('An error occurred while editing User');
+//     }
+// };
+
 
 // Delete User
 const deleteUser = async (req, res) => {
