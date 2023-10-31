@@ -10,6 +10,7 @@ const clientRoutes = require('./src/clients/routes')
 const productsRoutes = require('./src/products/routes')
 const usersRoutes = require('./src/users/routes')
 const loginRoutes = require('./src/login/routes')
+const billRoutes = require('./src/bills/routes')
 
 
 const app = express()
@@ -38,6 +39,7 @@ app.use('/api/v1/clients', clientRoutes)
 app.use('/api/v1/products', productsRoutes)
 app.use('/api/v1/users', usersRoutes)
 app.use('/api/v1/login', loginRoutes)
+app.use('/api/v1/bills', billRoutes)
 
 
 app.listen(port, ()=>{
