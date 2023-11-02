@@ -72,10 +72,13 @@ const updateBill = async (req, res) => {
         payment_status,
         payment_date,
         client_id,
+        invoice_id
     } = req.body;
 
     try {
         const getBill = await pool.query(queries.getBillById, [id]);
+
+        console.log(req.body)
 
         if (getBill.rows.length) {
             const updateQuery = await pool.query(queries.updateBill, [
@@ -87,16 +90,15 @@ const updateBill = async (req, res) => {
                 payment_status,
                 payment_date,
                 client_id,
-                id,
+                invoice_id
             ]);
 
             res.status(200).send("Bill Edited Successfully");
-            console.log(updateQuery.rows);
         } else {
             console.log("Bill Not Found");
         }
     } catch (err) {
-        console.error("Error:", err);
+        console.error("E:", err);
         res.status(500).send("An error occurred while updating the bill.");
     }
 };

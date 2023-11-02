@@ -19,8 +19,8 @@ const deleteBill = 'DELETE FROM BILLS WHERE invoice_id = $1';
 
 const updateBill = `
     UPDATE BILLS
-    SET invoice_date = $1, product = $2, stock = $3, amount = $4, payment_status = $5, payment_date = $6, client_id = $7
-    WHERE invoice_id = $8;
+    SET invoice_no = $1, invoice_date = $2, product = $3, stock = $4, amount = $5, payment_status = $6, payment_date = $7, client_id = $8
+    WHERE invoice_id = $9;
 `;
 
 module.exports = {
