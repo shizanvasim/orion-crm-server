@@ -2,6 +2,8 @@ const getAllBills = 'SELECT * FROM BILLS';
 
 const getBillById = 'SELECT * FROM BILLS WHERE invoice_id = $1';
 
+const getBillByClientId = 'SELECT * FROM BILLS WHERE client_id = $1';
+
 const addBill = `
     INSERT INTO BILLS (
         invoice_no,
@@ -28,5 +30,6 @@ module.exports = {
     getBillById,
     addBill,
     deleteBill,
-    updateBill
+    updateBill,
+    getBillByClientId
 };

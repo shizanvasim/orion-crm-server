@@ -18,4 +18,7 @@ router.put('/:id', controllers.updateBill);
 // Get Bill By Id Route
 router.get('/:id', controllers.getBillById);
 
+// Get Bill By Client Id Route
+router.get('/client/:id', controllers.getBillByClientId);
+
 module.exports = router;

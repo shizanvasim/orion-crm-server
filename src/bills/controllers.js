@@ -18,6 +18,14 @@ const getBillById = (req, res) => {
     });
 };
 
+const getBillByClientId = (req, res) => {
+    const id = parseInt(req.params.id);
+    pool.query(queries.getBillByClientId, [id], (err, results) => {
+        if (err) throw new Error("Error Fetching Bill");
+        res.status(200).json(results.rows);
+    });
+};
+
 // Add Bill
 const addBill = async (req, res) => {
     const {
@@ -109,4 +117,5 @@ module.exports = {
     addBill,
     deleteBill,
     updateBill,
+    getBillByClientId
 };
