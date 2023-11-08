@@ -32,8 +32,9 @@ const addClient = `
         products_purchased,
         purchased_dates,
         joined_on,
-        paid
-    ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);
+        paid,
+        user_id
+    ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14);
 `;
 
 const deleteClient = `DELETE FROM clients WHERE client_id = $1;`

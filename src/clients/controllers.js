@@ -35,8 +35,11 @@ const addClient = async (req, res) => {
     area,
     products_purchased,
     purchased_dates,
-    paid
+    paid,
+    user_id
   } = req.body;
+
+  console.log(req.body)
 
   console.log(req.files)
 
@@ -64,7 +67,8 @@ const addClient = async (req, res) => {
       products_purchased,
       purchased_dates,
       new Date(),
-      paid
+      paid,
+      user_id
     ]);
     res.status(201).send("Client Added Successfully");
     console.log(addClientResult.rows);
