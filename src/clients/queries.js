@@ -2,6 +2,8 @@ const getAllClients = 'SELECT * FROM CLIENTS'
 
 const getClientById = `SELECT * FROM CLIENTS WHERE client_id = $1`
 
+const getClienstByUserId = `SELECT * FROM CLIENTS WHERE user_id = $1`
+
 const getAllProducts = 'SELECT * FROM PRODUCTS'
 
 const getProductById = `SELECT * FROM PRODUCTS WHERE product_id = $1`
@@ -55,5 +57,6 @@ module.exports = {
     checkMobileNo,
     addClient,
     deleteClient,
-    updateClient
+    updateClient,
+    getClienstByUserId
 }

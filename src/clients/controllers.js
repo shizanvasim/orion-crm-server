@@ -20,6 +20,15 @@ const getClientById = (req, res) => {
   });
 };
 
+// Get Client By Id
+const getClientUserById = (req, res) => {
+  const id = parseInt(req.params.id);
+  pool.query(queries.getClienstByUserId, [id], (err, results) => {
+    if (err) throw new Error("Errors Fetching Clients");
+    res.status(200).json(results.rows);
+  });
+};
+
 
 // Add Client
 const addClient = async (req, res) => {
@@ -159,4 +168,5 @@ module.exports = {
   addClient,
   deleteClient,
   updateClient,
+  getClientUserById
 };

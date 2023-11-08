@@ -18,5 +18,8 @@ router.put('/:id', controllers.updateClient)
 // Get Client By Id Route
 router.get('/:id', controllers.getClientById)
 
+// Get Client By User Id Route
+router.get('/user/:id', controllers.getClientUserById)
+
 
 module.exports = router
