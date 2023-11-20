@@ -86,14 +86,14 @@ const updateLoginLocation = async (req, res) => {
         const { login_location } = req.body;
 
         // Check if the user with the given ID exists
-        const checkIfExists = await pool.query(userQueries.getUserById, [id]);
+        const checkIfExists = await pool.query(userQueries.getUserById, [user_id]);
         if (checkIfExists.rows.length === 0) {
             res.status(404).send('User Not Found');
             return;
         }
 
         // Update the user's login location in the database
-        await pool.query(userQueries.updateLoginLocation, [login_location, id]);
+        await pool.query(userQueries.updateLoginLocation, [login_location, user_id]);
         res.send('User Login Location Updated Successfully');
     } catch (error) {
         console.error(error);
@@ -112,14 +112,14 @@ const updateLogoutLocation = async (req, res) => {
         const { logout_location } = req.body;
 
         // Check if the user with the given ID exists
-        const checkIfExists = await pool.query(userQueries.getUserById, [id]);
+        const checkIfExists = await pool.query(userQueries.getUserById, [user_id]);
         if (checkIfExists.rows.length === 0) {
             res.status(404).send('User Not Found');
             return;
         }
 
         // Update the user's login location in the database
-        await pool.query(userQueries.updateLogoutLocation, [logout_location, id]);
+        await pool.query(userQueries.updateLogoutLocation, [logout_location, user_id]);
         res.send('User Logout Location Updated Successfully');
     } catch (error) {
         console.error(error);
