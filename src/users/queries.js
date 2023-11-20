@@ -17,13 +17,13 @@ const checkIfUsernameExists = 'SELECT * FROM users WHERE username = $1';
 const deleteUser = 'DELETE FROM users WHERE user_id = $1';
 
 // Update a user's information by their ID
-const updateUser = 'UPDATE users SET username = $1, email = $2, role = $3, password = $4 WHERE id = $5';
+const updateUser = 'UPDATE users SET username = $1, email = $2, role = $3, password = $4 WHERE user_id = $5';
 
 // Update Location On Login
-const updateLoginLocation = `UPDATE users SET login_location = $1 WHERE id = $2`
+const updateLoginLocation = `UPDATE users SET login_location = $1 WHERE user_id = $2`
 
 // Update Location On Logout
-const updateLogoutLocation = `UPDATE users SET logout_location = $1 WHERE id = $2`
+const updateLogoutLocation = `UPDATE users SET logout_location = $1 WHERE user_id = $2`
 
 const updateUserWithoutPassword = `UPDATE users SET username = $1, email = $2, role = $3 WHERE user_id = $4`;
 
