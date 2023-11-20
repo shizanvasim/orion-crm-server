@@ -18,4 +18,10 @@ router.delete('/:id', controllers.deleteUser)
 // Update Product
 router.put('/:id', controllers.editUser)
 
+// Update Login Location
+router.put('/login-location/:id', controllers.updateLoginLocation)
+
+// Update Logout Location
+router.put('/logout-location/:id', controllers.updateLogoutLocation)
+
 module.exports = router

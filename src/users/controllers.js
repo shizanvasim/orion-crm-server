@@ -78,6 +78,57 @@ const editUser = async (req, res) => {
 };
 
 
+
+// Login Location
+const updateLoginLocation = async (req, res) => {
+    try {
+        const { id } = req.params; // Assuming you pass the user's ID as a parameter
+        const { login_location } = req.body;
+
+        // Check if the user with the given ID exists
+        const checkIfExists = await pool.query(userQueries.getUserById, [id]);
+        if (checkIfExists.rows.length === 0) {
+            res.status(404).send('User Not Found');
+            return;
+        }
+
+        // Update the user's login location in the database
+        await pool.query(userQueries.updateLoginLocation, [login_location, id]);
+        res.send('User Login Location Updated Successfully');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('An error occurred while updating User Login Location');
+    }
+};
+
+
+
+
+
+// Logout Location
+const updateLogoutLocation = async (req, res) => {
+    try {
+        const { id } = req.params; // Assuming you pass the user's ID as a parameter
+        const { logout_location } = req.body;
+
+        // Check if the user with the given ID exists
+        const checkIfExists = await pool.query(userQueries.getUserById, [id]);
+        if (checkIfExists.rows.length === 0) {
+            res.status(404).send('User Not Found');
+            return;
+        }
+
+        // Update the user's login location in the database
+        await pool.query(userQueries.updateLogoutLocation, [logout_location, id]);
+        res.send('User Logout Location Updated Successfully');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('An error occurred while updating User Login Location');
+    }
+};
+
+
+
 // Edit User
 // const editUser = async (req, res) => {
 //     try {
@@ -116,4 +167,4 @@ const deleteUser = async (req, res) => {
     }
 };
 
-module.exports = { getAllUsers, getUserById, addUser, deleteUser, editUser };
+module.exports = { getAllUsers, getUserById, addUser, deleteUser, editUser, updateLoginLocation, updateLogoutLocation };
