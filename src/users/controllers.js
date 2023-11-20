@@ -82,7 +82,7 @@ const editUser = async (req, res) => {
 // Login Location
 const updateLoginLocation = async (req, res) => {
     try {
-        const { id } = req.params; // Assuming you pass the user's ID as a parameter
+        const { user_id } = req.params; // Assuming you pass the user's ID as a parameter
         const { login_location } = req.body;
 
         // Check if the user with the given ID exists
@@ -108,7 +108,7 @@ const updateLoginLocation = async (req, res) => {
 // Logout Location
 const updateLogoutLocation = async (req, res) => {
     try {
-        const { id } = req.params; // Assuming you pass the user's ID as a parameter
+        const { user_id } = req.params; // Assuming you pass the user's ID as a parameter
         const { logout_location } = req.body;
 
         // Check if the user with the given ID exists

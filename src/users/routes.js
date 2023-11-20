@@ -19,9 +19,9 @@ router.delete('/:id', controllers.deleteUser)
 router.put('/:id', controllers.editUser)
 
 // Update Login Location
-router.put('/login-location/:id', controllers.updateLoginLocation)
+router.put('/login-location/:user_id', controllers.updateLoginLocation)
 
 // Update Logout Location
-router.put('/logout-location/:id', controllers.updateLogoutLocation)
+router.put('/logout-location/:user_id', controllers.updateLogoutLocation)
 
 module.exports = router
